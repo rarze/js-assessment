@@ -37,6 +37,21 @@ arraysAnswers = {
   },
 
   /**
+   * Remove the item duplications of arr.
+   *
+   * @param {Number[]} arr - An array of numbers
+   * @param {Number} item - A number to be excluded from the new array
+   * @returns {Number[]} The array arr, without the item duplicates.
+   */
+  removeWithoutCopy: function removeWithoutCopy(arr, item) {
+    let currentIndex;
+    while ((currentIndex = arr.indexOf(item)) > -1) {
+      arr.splice(currentIndex, 1);
+    }
+    return arr;
+  },
+
+  /**
    * Adds a number, item, to the end of an array, arr.
    *
    * @param {Number[]} arr - An array of numbers
@@ -125,7 +140,14 @@ arraysAnswers = {
    * @returns {Number[]} An array of numbers that appear in arr more than once.
    */
   duplicates: function duplicates(arr) {
-
+    const repetitions = [];
+    arr.forEach((item) => {
+      if (repetitions.indexOf(item) === -1 && this.count(arr, item) > 1) {
+        repetitions.push(item);
+        this.remove(arr, item);
+      }
+    });
+    return repetitions;
   },
 
   /**
@@ -146,6 +168,12 @@ arraysAnswers = {
    * @returns {Number[]} A new array of numbers which represent the indices of target in arr.
    */
   findAllOccurrences: function findAllOccurrences(arr, target) {
-
+    const indices = [];
+    let currentIndex = arr.indexOf(target);
+    while (currentIndex > -1) {
+      indices.push(currentIndex);
+      currentIndex = arr.indexOf(target, currentIndex + 1);
+    }
+    return indices;
   },
 };
