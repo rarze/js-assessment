@@ -15,10 +15,10 @@ flowControlAnswers = {
     let result = '';
     if (typeof num === 'number') {
       if (num % 3 === 0) {
-        result = result.concat('fizz');
+        result = `${result}fizz`;
       }
       if (num % 5 === 0) {
-        result = result.concat('buzz');
+        result = `${result}buzz`;
       }
       if (result === '') {
         result = num;

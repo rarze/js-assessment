@@ -18,11 +18,7 @@ arraysAnswers = {
    * @returns {Number} The numerical sum of all items in arr.
    */
   sum: function sum(arr) {
-    let accum = 0;
-    arr.forEach((number) => {
-      accum += number;
-    });
-    return accum;
+    return arr.reduce((accumulator, current) => accumulator + current, 0);
   },
 
   /**
@@ -59,8 +55,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with item appended.
    */
   append: function append(arr, item) {
-    arr.push(item);
-    return arr;
+    return [...arr, item];
   },
 
   /**
@@ -82,8 +77,7 @@ arraysAnswers = {
    * @returns {Number[]} The array arr, with the first element item added
    */
   prepend: function prepend(arr, item) {
-    arr.unshift(item);
-    return arr;
+    return [item, ...arr];
   },
 
 
@@ -106,7 +100,7 @@ arraysAnswers = {
    * @returns {Number[]} A new array, with elements from arr1 and arr2 in that order.
    */
   concat: function concat(arr1, arr2) {
-    return arr1.concat(arr2);
+    return [...arr1, ...arr2];
   },
 
   /**

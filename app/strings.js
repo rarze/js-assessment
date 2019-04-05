@@ -21,11 +21,11 @@ stringsAnswers = {
       strCopy = strCopy.slice(strMatch[0].length);
       currentChar = strCopy.charAt(0);
       if (strMatch[0].length <= amount) {
-        result = result.concat(replacingString);
+        result = `${result}${replacingString}`;
         regex = new RegExp(`${currentChar}+`);
         strMatch = strCopy.match(regex);
       } else {
-        result = result.concat(replacingString[0].repeat(amount));
+        result = `${result}${replacingString[0].repeat(amount)}`;
         if (currentChar !== '') {
           regex = new RegExp(`${currentChar}+`);
         }
