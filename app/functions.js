@@ -27,7 +27,6 @@ functionsAnswers = {
    * that begins with str + ', ' + that 1 argument.
    */
   functionFunction: function functionFunction(str) {
-    const builder = () => str2 => `${str}, ${str2}`;
-    return builder(str);
+    return str2 => `${str}, ${str2}`;
   },
 };
