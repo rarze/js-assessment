@@ -22,19 +22,21 @@ asyncAnswers = {
    * @returns {then: function} A promise like object containing a then property.
    */
   manipulateRemoteData: function manipulateRemoteData(url) {
-    const success = (data, xhr) => data.people;
-    const respStatus = (data, xhr) => {
+    const sortItems = arr => arr.map(item => item.name).sort();
+    const respStatus = (xhr) => {
       if (xhr.status === 200) {
-        return success(data, xhr);
+        return xhr.responseJSON.people;
       }
+      return xhr.reject();
     };
     const options = {
       url: url,
       dataType: 'json',
-      success: (data, text, xhr) => {
-        return respStatus(data, xhr);
-      },
+      success: (data, text, xhr) => respStatus(xhr),
     };
-    return Promise.resolve($.ajax(options));
+    return $.get(options)
+      .then(data => Promise.resolve(sortItems(data.people)))
+      .catch(err => console.log(err))
+      .done();
   },
 };
